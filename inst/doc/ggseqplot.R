@@ -159,6 +159,7 @@ ggseqmtplot(actcal.seq, no.n = TRUE, error.bar = "SE")
 ggseqmtplot(actcal.seq, no.n = TRUE, error.bar = "SE") +
  coord_flip() +
  theme(axis.text.y=element_blank(),
+       axis.ticks.y = element_blank(),
        panel.grid.major.y = element_blank(),
        legend.position = "top")
 
