@@ -1,6 +1,6 @@
 Package: ggseqplot
 Title: Render Sequence Plots using 'ggplot2'
-Version: 0.7.2
+Version: 0.8.0
 Authors@R: 
   person("Marcel", "Raab", , "marcel.raab@gmail.com", role = c("aut", "cre"),
          comment = c(ORCID = "0000-0002-3097-1591"))
@@ -11,22 +11,23 @@ Description: A set of wrapper functions that mainly re-produces some of the
   with TraMineR::seqdef(). The package automates the reshaping and plotting 
   of sequence data. Resulting plots are of class 'ggplot', i.e. components 
   can be added and tweaked using '+' and regular 'ggplot2' functions. 
-URL: https://github.com/maraab23/ggseqplot
+URL: https://maraab23.github.io/ggseqplot/,
+        https://github.com/maraab23/ggseqplot
 BugReports: https://github.com/maraab23/ggseqplot/issues
-Depends: R (>= 4.1.0)
+Depends: R (>= 4.1.0), TraMineR (>= 2.2-5)
 License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.2.1
 RdMacros: Rdpack
 Imports: colorspace, dplyr, forcats, ggh4x, ggplot2, ggrepel, ggtext,
-        glue, patchwork, purrr, Rdpack, tidyr, TraMineR, usethis
+        glue, patchwork, purrr, Rdpack, tidyr, usethis
 Suggests: covr, ggthemes, hrbrthemes, knitr, rmarkdown, testthat (>=
         3.0.0), TraMineRextras
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2022-08-05 19:04:29 UTC; ba3gh6
+Packaged: 2022-09-07 19:45:48 UTC; ba3gh6
 Author: Marcel Raab [aut, cre] (<https://orcid.org/0000-0002-3097-1591>)
 Maintainer: Marcel Raab <marcel.raab@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-08-05 23:20:02 UTC
+Date/Publication: 2022-09-07 20:00:02 UTC

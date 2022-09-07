@@ -49,7 +49,6 @@
 #'
 #' # Examples from TraMineR::seqplot
 #'
-#' library(TraMineR)
 #' library(ggplot2)
 #'
 #' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,16 +116,24 @@ ggseqmtplot <- function(seqdata,
     stop("`facet_nrow` must be NULL or an integer.")
   }
 
+  if (is.factor(group)) {
+    group <- forcats::fct_drop(group)
+    grinorder <- levels(group)
+  } else {
+    grinorder <- factor(unique(group))
+  }
+
   xandgrouplabs <- xandgrouplab(seqdata = seqdata,
                                 weighted = weighted,
                                 no.n = no.n,
+                                grinorder = grinorder,
                                 group = group,
                                 ylabprefix = "Mean time")
   grouplabspec <- xandgrouplabs[[1]]
   ylabspec <- xandgrouplabs[[2]]
 
 
-  mtplotdata <- purrr::map(sort(unique(group)),
+  mtplotdata <- purrr::map(grinorder,
                            ~seqmeant(seqdata[group == .x,],
                                      serr=TRUE,
                                      weighted = weighted,

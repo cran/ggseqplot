@@ -11,7 +11,7 @@ on.exit(options(old))
 options(rmarkdown.html_vignette.check_title = FALSE)
 
 pkgs <- c("colorspace", "ggplot2", "ggthemes", "ggseqplot", "hrbrthemes", 
-          "patchwork", "TraMineR", "TraMineRextras")
+          "patchwork", "purrr", "TraMineRextras")
 
 # Load all packages to library and adjust options
 lapply(pkgs, library, character.only = TRUE)
@@ -26,7 +26,7 @@ lapply(pkgs, library, character.only = TRUE)
 #  
 #  ## Save package names as a vector of strings
 #  pkgs <- c("colorspace", "ggplot2", "ggthemes", "hrbrthemes",
-#            "patchwork", "TraMineR", "TraMineRextras")
+#            "patchwork", "purrr", "TraMineRextras")
 #  
 #  
 #  ## Install uninstalled packages
@@ -231,4 +231,28 @@ p[[4]] <- p[[4]] +
 
 p
 
+
+## -----------------------------------------------------------------------------
+
+diss <- seqdist(biofam.seq, method = "LCS")
+
+sex <- biofam[501:600, "sex"]
+
+p <- map2(
+  levels(sex), # input x
+  c("Men", "Women"), # input y
+  function(x, y) {
+    p <- ggseqrfplot(biofam.seq[sex == x,],
+                     diss = diss[sex == x,sex == x],
+                     k = 12)
+    p[[1]] <- p[[1]] + labs(tag = y)
+    return(p)
+    }
+  )
+
+names(p) <- levels(sex)
+
+(p$man & theme(legend.position = "none")) / p$woman
+
+    
 

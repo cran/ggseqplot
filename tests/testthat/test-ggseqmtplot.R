@@ -2,12 +2,6 @@
 
 # Examples from TraMineR::seqplot
 
-library(TraMineR)
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# Examples from TraMineR::seqplot
-
 # actcal data set
 data(actcal)
 
@@ -68,6 +62,7 @@ test_that("Executions stops if logical arguments take wrong values", {
 
 test_that("check if output of ggseqmtplot is ggplot", {
   expect_s3_class(ggseqmtplot(actcal.seq), "ggplot")
+  expect_s3_class(ggseqmtplot(actcal.seq, group = NULL), "ggplot")
   expect_s3_class(ggseqmtplot(actcal.seq, error.bar = "SE"), "ggplot")
   expect_s3_class(ggseqmtplot(actcal.seq, error.bar = "SD"), "ggplot")
   expect_s3_class(ggseqmtplot(actcal.seq, no.n= TRUE), "ggplot")

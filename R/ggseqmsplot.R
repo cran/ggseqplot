@@ -39,7 +39,6 @@
 #'
 #' # Examples from TraMineR::seqplot
 #'
-#' library(TraMineR)
 #' library(ggplot2)
 #'
 #' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,6 +90,14 @@ ggseqmsplot <- function(seqdata,
 
   if (is.null(attributes(seqdata)$weights)) weighted <- FALSE
 
+  if (is.factor(group)) {
+    group <- forcats::fct_drop(group)
+    grinorder <- levels(group)
+  } else {
+    grinorder <- factor(unique(group))
+  }
+  if (is.null(group)) grinorder <- factor(1)
+
   if (is.null(group)) group <- 1
 
 
@@ -107,7 +114,7 @@ ggseqmsplot <- function(seqdata,
   }
 
 
-  msplotdata <- purrr::map(unique(group),
+  msplotdata <- purrr::map(grinorder,
                            ~TraMineR::seqmodst(seqdata[group == .x,],
                                                weighted = weighted,
                                                with.missing = with.missing) |>
@@ -139,6 +146,7 @@ ggseqmsplot <- function(seqdata,
                                 weighted = weighted,
                                 no.n = no.n,
                                 group = group,
+                                grinorder = grinorder,
                                 ylabprefix = "Rel. Freq.")
   grouplabspec <- xandgrouplabs[[1]]
   ylabspec <- xandgrouplabs[[2]]
