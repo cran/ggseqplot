@@ -5,8 +5,7 @@
 #' instead of base R's \code{\link[base]{plot}} function that is used by
 #' \code{\link[TraMineR:seqplot]{TraMineR::seqplot}} \insertCite{gabadinho2011}{ggseqplot}.
 #' Other than in \code{\link[TraMineR:seqHtplot]{TraMineR::seqHtplot}} group-specific entropy
-#' lines are displayed in a common plot (just like in
-#' \code{\link[TraMineRextras:seqplot.tentrop]{TraMineRextras::seqplot.tentrop}}).
+#' lines are displayed in a common plot.
 #'
 #' @param seqdata State sequence object (class \code{stslist}) created with the \code{\link[TraMineR:seqdef]{TraMineR::seqdef}} function.
 #' @param group If grouping variable is specified plot shows one line for each group
@@ -41,9 +40,8 @@
 #'   \insertAllCited{}
 #'
 #' @examples
-#' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#'
-#' # Examples from TraMineR::seqplot
+#' # Use examples from TraMineR
+#' library('TraMineR')
 #'
 #' # actcal data set
 #' data(actcal)
@@ -54,9 +52,6 @@
 #' actcal.lab <- c("> 37 hours", "19-36 hours", "1-18 hours", "no work")
 #' actcal.seq <- seqdef(actcal, 13:24, labels = actcal.lab)
 #'
-#' # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#'
-#'
 #' # sequences sorted by age in 2000 and grouped by sex
 #' # with TraMineR::seqplot (entropies shown in two separate plots)
 #' seqHtplot(actcal.seq, group = actcal$sex)
@@ -64,7 +59,7 @@
 #' ggseqeplot(actcal.seq, group = actcal$sex)
 #' ggseqeplot(actcal.seq, group = actcal$sex, gr.linetype = TRUE)
 #'
-#' #manual color specification
+#' # manual color specification
 #' ggseqeplot(actcal.seq, linecolor = "darkgreen")
 #' ggseqeplot(actcal.seq, group = actcal$sex,
 #'            linecolor = c("#3D98D3FF", "#FF363CFF"))

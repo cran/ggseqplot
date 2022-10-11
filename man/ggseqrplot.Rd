@@ -24,7 +24,7 @@ ggseqrplot(
 \arguments{
 \item{seqdata}{State sequence object (class \code{stslist}) created with the \code{\link[TraMineR:seqdef]{TraMineR::seqdef}} function.}
 
-\item{diss}{pairwise dissimilarities between sequences in \code{seqdata} (see \code{TraMineRextras::seqdist})}
+\item{diss}{pairwise dissimilarities between sequences in \code{seqdata} (see \code{TraMineR::seqdist})}
 
 \item{group}{A vector of the same length as the sequence data indicating group membership. When not NULL, a distinct plot is generated for each level of group.}
 
@@ -91,29 +91,31 @@ of the plot. If you want to adjust the appearance of the composed plot, for inst
 plot theme, you should consult the documentation material of \code{\link[patchwork]{patchwork}}.
 }
 \examples{
-## Defining a sequence object with the data in columns 10 to 25
-## (family status from age 15 to 30) in the biofam data set
+# Use examples from TraMineR
+library(TraMineR)
+# Defining a sequence object with the data in columns 10 to 25
+# (family status from age 15 to 30) in the biofam data set
 data(biofam)
 biofam.lab <- c("Parent", "Left", "Married", "Left+Marr",
 "Child", "Left+Child", "Left+Marr+Child", "Divorced")
 biofam.seq <- seqdef(biofam, 10:25, labels=biofam.lab)
 
-## Computing the distance matrix
+# Computing the distance matrix
 costs <- seqsubm(biofam.seq, method="TRATE")
 biofam.om <- seqdist(biofam.seq, method="OM", sm=costs)
 
-## Representative sequence  plot (using defaults)
-## ... with TraMineR::seqplot
+# Representative sequence  plot (using defaults)
+# ... with TraMineR::seqplot
 seqrplot(biofam.seq, diss = biofam.om)
 
-## ... with ggseqrplot
+# ... with ggseqrplot
 ggseqrplot(biofam.seq, diss = biofam.om)
 
-## using group argument
-## ... with TraMineR::seqplot
+# using group argument
+# ... with TraMineR::seqplot
 seqrplot(biofam.seq, diss = biofam.om, group = biofam$sex)
 
-## ... with ggseqrplot
+# ... with ggseqrplot
 ggseqrplot(biofam.seq, diss = biofam.om, group = biofam$sex)
 }
 \references{
