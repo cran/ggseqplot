@@ -1,3 +1,8 @@
+# ggseqplot 0.8.2
+
+* implemented changes required due to recent tidyverse updates
+* removed startup message
+
 # ggseqplot 0.8.1
 
 * reverted TraMiner to Import 
