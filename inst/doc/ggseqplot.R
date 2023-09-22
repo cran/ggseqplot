@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----prelude, include = FALSE-------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -79,11 +79,11 @@ seqstatd(actcal.seq)
 dplot <- ggseqdplot(actcal.seq)
 dplot$data
 
-## ---- dplot1------------------------------------------------------------------
+## ----dplot1-------------------------------------------------------------------
 # ggseqplot::ggseqdplot
 ggseqdplot(actcal.seq)
 
-## ---- message=FALSE, warning=FALSE--------------------------------------------
+## ----message=FALSE, warning=FALSE---------------------------------------------
 ggseqdplot(actcal.seq) +
   scale_fill_discrete_sequential("heat") +
   scale_x_discrete(labels = month.abb) +
@@ -95,7 +95,7 @@ ggseqdplot(actcal.seq) +
                                   margin=margin(0,0,20,0)),
         plot.title.position = "plot")
 
-## ---- message=FALSE, warning=FALSE--------------------------------------------
+## ----message=FALSE, warning=FALSE---------------------------------------------
 # Save plot using weights
 p1 <- ggseqdplot(ex1.seq, 
                  with.entropy = TRUE) + 
