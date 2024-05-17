@@ -106,6 +106,12 @@ ggseqmtplot <- function(seqdata,
     stop("`facet_nrow` must be NULL or an integer.")
   }
 
+  if ("haven_labelled" %in% class(group)) {
+    group_name <- deparse(substitute(group))
+    group <- haven::as_factor(group)
+    cli::cli_warn(c("i" = "group vector {.arg {group_name}} is of class {.cls haven_labelled} and has been converted into a factor"))
+  }
+
   if (is.factor(group)) {
     group <- forcats::fct_drop(group)
     grinorder <- levels(group)
@@ -157,7 +163,8 @@ ggseqmtplot <- function(seqdata,
     ggplot(aes(x = .data$state, fill = .data$labels)) +
     geom_bar(aes(y = .data$Mean), stat="identity",
              color = ifelse(border == TRUE, "black",
-                            "transparent")) +
+                            "transparent"),
+             show.legend = T) +
     scale_y_continuous(expand = expansion(add = 0)) +
     scale_fill_manual(drop = FALSE,
                       values = cpal) +

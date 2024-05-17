@@ -142,6 +142,12 @@ ggseqiplot <- function(seqdata,
     stop("`facet_nrow` must be NULL or an integer.")
   }
 
+  if ("haven_labelled" %in% class(group)) {
+    group_name <- deparse(substitute(group))
+    group <- haven::as_factor(group)
+    cli::cli_warn(c("i" = "group vector {.arg {group_name}} is of class {.cls haven_labelled} and has been converted into a factor"))
+  }
+
   if (is.factor(group)) {
     group <- forcats::fct_drop(group)
     grinorder <- levels(group)
@@ -426,7 +432,7 @@ ggseqiplot <- function(seqdata,
                    ymin = .data$begin, ymax = .data$end,
                    fill = .data$states, colour = .data$states
         )) +
-        geom_rect() +
+        geom_rect(show.legend = T) +
         scale_fill_manual(values = cpal, drop = FALSE) +
         scale_color_manual(values = cpal, drop = FALSE) +
         theme_minimal() +
@@ -444,7 +450,8 @@ ggseqiplot <- function(seqdata,
                    ymin = .data$begin, ymax = .data$end,
                    fill = .data$states
         )) +
-        geom_rect(colour = "black") +
+        geom_rect(colour = "black",
+                  show.legend = T) +
         scale_fill_manual(values = cpal, drop = FALSE) +
         scale_color_manual(values = cpal, drop = FALSE) +
         theme_minimal() +

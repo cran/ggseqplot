@@ -80,6 +80,12 @@ ggseqmsplot <- function(seqdata,
 
   if (is.null(attributes(seqdata)$weights)) weighted <- FALSE
 
+  if ("haven_labelled" %in% class(group)) {
+    group_name <- deparse(substitute(group))
+    group <- haven::as_factor(group)
+    cli::cli_warn(c("i" = "group vector {.arg {group_name}} is of class {.cls haven_labelled} and has been converted into a factor"))
+  }
+
   if (is.factor(group)) {
     group <- forcats::fct_drop(group)
     grinorder <- levels(group)
@@ -178,13 +184,16 @@ ggseqmsplot <- function(seqdata,
   if (border == FALSE) {
     ggmsplot <- msplotdata |>
       ggplot(aes(fill = .data$state, y = .data$value, x = .data$x)) +
-      geom_bar(stat="identity", width = barwidth)
+      geom_bar(stat="identity",
+               width = barwidth,
+               show.legend = T)
   } else {
     ggmsplot <- msplotdata |>
       ggplot(aes(fill = .data$state, y = .data$value, x = .data$x)) +
       geom_bar(stat="identity",
                width = barwidth,
-               color = "black")
+               color = "black",
+               show.legend = T)
   }
 
   ggmsplot <- ggmsplot +
