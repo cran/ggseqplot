@@ -11,7 +11,7 @@ on.exit(options(old))
 options(rmarkdown.html_vignette.check_title = FALSE)
 
 pkgs <- c("colorspace", "ggplot2", "ggthemes", "ggseqplot", "hrbrthemes", 
-          "patchwork", "purrr", "TraMineR")
+          "patchwork", "forcats", "ggh4x", "purrr", "TraMineR")
 
 # Load all packages to library and adjust options
 lapply(pkgs, library, character.only = TRUE)
@@ -19,27 +19,34 @@ lapply(pkgs, library, character.only = TRUE)
 
 
 ## ----libraries, eval=FALSE----------------------------------------------------
-#  ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  ## Load and download (if necessary) required packages ----
-#  ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#  
-#  
-#  ## Save package names as a vector of strings
-#  pkgs <- c("colorspace", "ggplot2", "ggthemes", "hrbrthemes",
-#            "patchwork", "purrr", "TraMineR")
-#  
-#  
-#  ## Install uninstalled packages
-#  lapply(pkgs[!(pkgs %in% installed.packages())],
-#         install.packages, repos = getOption("repos")["CRAN"])
-#  
-#  
-#  ## Load all packages to library and adjust options
-#  lapply(pkgs, library, character.only = TRUE)
-#  
-#  ## Don't forget to load ggseqplot
-#  library(ggseqplot)
-#  
+# ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ## Load and download (if necessary) required packages ----
+# ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 
+# 
+# ## Save package names as a vector of strings
+# pkgs <- c("colorspace", # for using colors palettes
+#           "forcats", # for dropping unused factor levels with `fct_drop`
+#           "ggh4x", # for proportional panel sized with `force_panelsizes`
+#           "ggplot2", # for using all the ggplot2 functions
+#           "ggthemes", # for getting access to the canva_palettes
+#           "hrbrthemes", # for using the ggplot2 theme `theme_ipsum`
+#           "patchwork", # for working with plot types built with patchwork
+#           "purrr", # used in the grouped rplot example
+#           "TraMineR") # the ultimate sequence analysis suite
+# 
+# 
+# ## Install uninstalled packages
+# lapply(pkgs[!(pkgs %in% installed.packages())],
+#        install.packages, repos = getOption("repos")["CRAN"])
+# 
+# 
+# ## Load all packages to library and adjust options
+# lapply(pkgs, library, character.only = TRUE)
+# 
+# ## Don't forget to load ggseqplot
+# library(ggseqplot)
+# 
 
 ## ----setup, message=FALSE-----------------------------------------------------
 
@@ -80,7 +87,6 @@ dplot <- ggseqdplot(actcal.seq)
 dplot$data
 
 ## ----dplot1-------------------------------------------------------------------
-# ggseqplot::ggseqdplot
 ggseqdplot(actcal.seq)
 
 ## ----message=FALSE, warning=FALSE---------------------------------------------
@@ -90,7 +96,7 @@ ggseqdplot(actcal.seq) +
   labs(title = "State distribution plot",
        x = "Month") +
   guides(fill=guide_legend(title="Alphabet")) +
-  theme_ipsum(base_family = "") + # ensures that this works on different OS
+  theme_ipsum(base_family = "") +
   theme(plot.title = element_text(size = 30, 
                                   margin=margin(0,0,20,0)),
         plot.title.position = "plot")
@@ -152,6 +158,21 @@ p1 + p2 &
                                   hjust = 0.5))
 
 ## -----------------------------------------------------------------------------
+# plot a subset of 5 sequences from biofam.seq
+ggseqiplot(biofam.seq[2:6,],
+           group = 1:5,
+           facet_ncol = 1,
+           strip.position = "left",
+           no.n = TRUE,
+           border = TRUE, 
+           weighted = FALSE) +
+  labs(y = NULL) +
+  theme(strip.text.y.left = element_text(angle = 0),
+        panel.spacing.y = unit(1.5, "lines"),
+        axis.text.y =  element_blank(),
+        axis.ticks.y = element_blank())
+
+## -----------------------------------------------------------------------------
 ## default plot
 ggseqmtplot(actcal.seq, no.n = TRUE, error.bar = "SE") 
 
@@ -172,6 +193,19 @@ ggseqiplot(actcal.seq, sortv = "from.end") +
 ggseqiplot(actcal.seq, sortv = "from.end") + 
   scale_x_discrete(labels = month.abb) +
   coord_flip()
+
+
+## -----------------------------------------------------------------------------
+hghts <- table(fct_drop(actcal$sex)) / nrow(actcal.seq)
+
+## -----------------------------------------------------------------------------
+## use ggh4x::force_panelsizes to get proportional panels
+ggseqiplot(actcal.seq, 
+           sortv = "from.end", 
+           group = actcal$sex,
+           facet_ncol = 1) +
+  force_panelsizes(rows = hghts) +
+  theme(panel.spacing = unit(1, "lines"))
 
 
 ## -----------------------------------------------------------------------------
