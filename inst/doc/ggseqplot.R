@@ -10,7 +10,7 @@ old <- options()
 on.exit(options(old))
 options(rmarkdown.html_vignette.check_title = FALSE)
 
-pkgs <- c("colorspace", "ggplot2", "ggthemes", "ggseqplot", "hrbrthemes", 
+pkgs <- c("colorspace", "ggplot2", "ggthemes", "ggseqplot",
           "patchwork", "forcats", "ggh4x", "purrr", "TraMineR")
 
 # Load all packages to library and adjust options
@@ -30,7 +30,6 @@ lapply(pkgs, library, character.only = TRUE)
 #           "ggh4x", # for proportional panel sized with `force_panelsizes`
 #           "ggplot2", # for using all the ggplot2 functions
 #           "ggthemes", # for getting access to the canva_palettes
-#           "hrbrthemes", # for using the ggplot2 theme `theme_ipsum`
 #           "patchwork", # for working with plot types built with patchwork
 #           "purrr", # used in the grouped rplot example
 #           "TraMineR") # the ultimate sequence analysis suite
@@ -96,10 +95,14 @@ ggseqdplot(actcal.seq) +
   labs(title = "State distribution plot",
        x = "Month") +
   guides(fill=guide_legend(title="Alphabet")) +
-  theme_ipsum(base_family = "") +
-  theme(plot.title = element_text(size = 30, 
-                                  margin=margin(0,0,20,0)),
-        plot.title.position = "plot")
+  theme_minimal(base_family = "") +
+  theme(plot.title = element_text(size = 30, margin=margin(0,0,20,0)),
+        plot.title.position = "plot",
+        axis.title.x = element_text(hjust = 1, 
+                                    vjust = -1),
+        axis.title.y = element_text(hjust = 1, 
+                                    vjust = 1),
+        axis.title = element_text(size = 9))
 
 ## ----message=FALSE, warning=FALSE---------------------------------------------
 # Save plot using weights
@@ -117,11 +120,16 @@ p2 <- ggseqdplot(ex1.seq,
 p1 + p2 + 
   plot_layout(guides = "collect") &
   scale_fill_manual(values= canva_palettes$`Fun and tropical`[1:4]) &
-  theme_ipsum(base_family = "") &
+  theme_minimal(base_family = "") &
   theme(plot.title = element_text(size = 20,
                                   hjust = 0.5),
         legend.position = "bottom",
-        legend.title = element_blank())
+        legend.title = element_blank(),
+        axis.title.x = element_text(hjust = 1, 
+                                    vjust = -1),
+        axis.title.y = element_text(hjust = 1, 
+                                    vjust = 1),
+        axis.title = element_text(size = 9))
 
 ## -----------------------------------------------------------------------------
 ggseqtrplot(actcal.seq, 
@@ -132,13 +140,13 @@ ggseqtrplot(actcal.seq,
 p1 <- ggseqtrplot(biofam.seq, 
                   dss = FALSE, 
                   x_n.dodge = 2,
-                  labsize = 3) +
+                  labsize = 7) +
   ggtitle("STS Sequences") +
   theme(plot.margin = unit(c(5,10,5,5), "points"))
 
 p2 <- ggseqtrplot(biofam.seq, 
                   x_n.dodge = 2,
-                  labsize = 3) +
+                  labsize = 7) +
     ggtitle("DSS Sequences") +
   theme(plot.margin = unit(c(5,5,5,10), "points"))
 
@@ -218,10 +226,15 @@ ggseqrfplot(biofam.seq, diss = diss, k = 12)
 
 ## adjusted version
 ggseqrfplot(biofam.seq, diss = diss, k = 12) &
-  theme_ipsum(base_family = "") &
+  theme_minimal(base_family = "") &
   theme(legend.position = "bottom",
         legend.title = element_blank(),
-        plot.title = element_text(size = 12)) &
+        plot.title = element_text(size = 12),
+        axis.title.x = element_text(hjust = 1, 
+                                    vjust = -1),
+        axis.title.y = element_text(hjust = 1, 
+                                    vjust = 1),
+        axis.title = element_text(size = 9)) &
   plot_annotation(title = "Relative Frequency Sequence Plot")
 
 ## -----------------------------------------------------------------------------

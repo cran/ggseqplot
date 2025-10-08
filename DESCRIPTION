@@ -1,6 +1,6 @@
 Package: ggseqplot
 Title: Render Sequence Plots using 'ggplot2'
-Version: 0.8.7
+Version: 0.8.8
 Authors@R: 
   person("Marcel", "Raab", , "marcel.raab@gmail.com", role = c("aut", "cre"),
          comment = c(ORCID = "0000-0002-3097-1591"))
@@ -17,18 +17,17 @@ BugReports: https://github.com/maraab23/ggseqplot/issues
 Depends: R (>= 4.1.0), TraMineR (>= 2.2-5), ggplot2 (>= 3.4.0)
 License: GPL (>= 3)
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 RdMacros: Rdpack
 Imports: cli, colorspace, dplyr (>= 1.1.0), forcats (>= 1.0.0), ggh4x,
         ggrepel, ggtext, glue, haven, patchwork, purrr, Rdpack, rlang,
-        tidyr, usethis
-Suggests: covr, ggthemes, hrbrthemes, knitr, rmarkdown, testthat (>=
-        3.0.0)
+        tidyr
+Suggests: covr, ggthemes, knitr, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2025-06-30 12:51:28 UTC; ba3gh6
+Packaged: 2025-10-07 20:39:48 UTC; ba3gh6
 Author: Marcel Raab [aut, cre] (ORCID: <https://orcid.org/0000-0002-3097-1591>)
 Maintainer: Marcel Raab <marcel.raab@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-06-30 21:10:02 UTC
+Date/Publication: 2025-10-08 05:10:32 UTC
