@@ -9,13 +9,12 @@
 status](https://www.r-pkg.org/badges/version/ggseqplot)](https://cran.r-project.org/package=ggseqplot)
 [![R-CMD-check](https://github.com/maraab23/ggseqplot/workflows/R-CMD-check/badge.svg)](https://github.com/maraab23/ggseqplot/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/maraab23/ggseqplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/maraab23/ggseqplot?branch=main)
+coverage](https://codecov.io/gh/maraab23/ggseqplot/graph/badge.svg)](https://app.codecov.io/gh/maraab23/ggseqplot)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggseqplot)](https://cranlogs.r-pkg.org/badges/grand-total/ggseqplot)
 [![pkgdown](https://img.shields.io/badge/docs-pkgdown-blue.svg)](https://maraab23.github.io/ggseqplot/)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
-
 <!-- badges: end -->
 
 The main goal of [`{ggseqplot}`](https://maraab23.github.io/ggseqplot/)
@@ -31,7 +30,7 @@ library literally builds on the excellent work of the
 target="_blank"><code>{TraMineR}</code></a> and
 <a href="https://ggplot2.tidyverse.org/"
 target="_blank"><code>{ggplot2}</code></a> developers and uses several
-of the their functions to produce ggplot2-flavored figures.
+of their functions to produce ggplot2-flavored figures.
 
 Note, that this library was not written because I personally dislike the
 plots produced by <a href="http://traminer.unige.ch"
@@ -56,7 +55,7 @@ following functions:
 - `ggseqeplot` (equivalent to `TraMineRextras::seqplot.tentrop`)
 - `ggseqmsplot` (equivalent to `TraMineR::seqmsplot`)
 - `ggseqmtplot` (equivalent to `TraMineR::seqmtplot`)
-- `ggstrqeplot` (based on transitions rates from `TraMineR::seqtrate`)
+- `ggseqtrplot` (based on transitions rates from `TraMineR::seqtrate`)
 - `ggseqiplot` (equivalent to `TraMineR::seqIplot`)
 - `ggseqfplot` (equivalent to `TraMineR::seqfplot`)
 - `ggseqrplot` (equivalent to `TraMineR::seqrplot`)
