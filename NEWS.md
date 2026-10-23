@@ -1,3 +1,13 @@
+# ggseqplot 1.0.0
+
+* added `ggseqtreeplot` for rendering regression trees of sequences (`TraMineR::seqtree`) without requiring GraphViz; the node plots can be adjusted with `node.layers`, mean time plots can share a common y-axis (`common.y = TRUE`), and the global quality measures can be placed anywhere (rendered as plot tag)
+* added `ggseqimplicplot` for plotting the implicative statistic computed with `TraMineRextras::seqimplic`
+* added `ggseqpcplot` for decorated parallel coordinate plots (reproducing `TraMineR::seqpcplot`)
+* `ggplot2` (>= 3.5.0) is now required (`ggseqtreeplot` uses `ggplot2::get_guide_data`)
+* `TraMineRextras` and `stats` are new imports
+* fixed R-CMD-check badge and updated README (new functions, note on the use of generative AI)
+* behind the scenes: re-documented with `roxygen2` 8.1.1
+
 # ggseqplot 0.8.9
 
 * added `ytlab` argument for `ggseqiplot` (requested by @helske, #9); allows to use ID labels in index plots similar to `{TraMineR}` 
